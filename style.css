@@ -33,6 +33,7 @@ html {
 }
 
 body {
+	position: relative;
 	padding: 0;
 	margin: 0;
 	font-family: "Karla", sans-serif;
@@ -43,6 +44,7 @@ body {
 	line-height: 1.65;
 	color: var(--black);
 	background-color: var(--white);
+	z-index: 0;
 }
 
 figure {
@@ -69,6 +71,20 @@ p {
 	font-style: normal;
 }
 
+a {
+	color: var(--blue);
+	text-decoration-color: transparent;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 3px;
+	transition: text-decoration-color 300ms ease-in-out;
+}
+
+a:focus,
+a:hover,
+a:active {
+	text-decoration-color: var(--blue);
+}
+
 .access-hidden {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
@@ -81,11 +97,23 @@ p {
 
 /* Header */
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
 	padding: 2rem;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
+	background-color: rgba(255, 255, 255, 90%);
+	box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 10%);
+	z-index: 1;
+	transition: padding 100ms linear;
+}
+
+.scrolled .header {
+	padding: 1rem 2rem;
 }
 
 .primary_logo {
@@ -95,10 +123,35 @@ p {
 .primary_logo svg {
 	width: 4.875rem;
 	height: 4.875rem;
+	transition: width 300ms ease;
+}
+
+.scrolled .primary_logo svg {
+	width: 3.5rem;
+	height: 3.5rem;
 }
 
 .primary_logo.mobile_logo {
 	display: none;
+}
+
+@media (max-width: 1215px) {
+	.header {
+		padding: 1rem 2rem;
+	}
+
+	.primary_logo svg {
+		width: 3.5rem;
+		height: 3.5rem;
+	}
+}
+
+@media (max-width: 1024px) {
+	.header,
+	.scrolled .header {
+		position: sticky;
+		padding: 1rem;
+	}
 }
 
 /* Navigation */
@@ -208,7 +261,7 @@ p {
 		top: 0;
 		left: -400px;
 		transform: translateX(0);
-		padding: 2rem;
+		padding: 1rem;
 		width: 400px;
 		max-width: 100%;
 		height: 100vh;
@@ -221,8 +274,8 @@ p {
 	.navigation .main_nav {
 		flex-direction: column;
 		gap: 0;
-		padding: 2rem 0;
-		margin: 2rem 0;
+		padding: 1rem 0;
+		margin: 1rem 0;
 		border-top: 1px solid var(--gray);
 		border-bottom: 1px solid var(--gray);
 	}
@@ -322,9 +375,9 @@ p {
 	align-items: center;
 	gap: 1rem;
 	width: 768px;
-	max-width: 100%;
+	max-width: calc(100% - 2rem);
 	padding: 4rem;
-	margin: 0 auto;
+	margin: 1rem auto;
 	background-color: rgba(255, 255, 255, 80%);
 }
 
@@ -356,9 +409,10 @@ p {
 }
 
 .hero .secondary_heading {
-	font-size: 3rem;
+	font-size: clamp(1.75rem, 2.5vw, 3rem);
 	margin: 0;
 	line-height: 1.25;
+	text-align: center;
 	color: var(--blue);
 }
 
@@ -407,11 +461,24 @@ p {
 	fill: var(--white);
 }
 
+@media (max-width: 1024px) {
+	.hero_wrap {
+		padding: 2rem;
+	}
+
+	.hero_wrap::before {
+		width: calc(100% - 2rem);
+		height: calc(100% - 2rem);
+		top: 1rem;
+		left: 1rem;
+	}
+}
+
 /* Blog Masonry Columns */
 .masonry_columns {
-	columns: 4 auto;
-	gap: 4rem;
-	padding: 4rem;
+	columns: 3 auto;
+	gap: 2rem;
+	padding: 2rem;
 }
 
 .item {
@@ -421,21 +488,13 @@ p {
 
 .item .secondary_heading {
 	text-align: center;
-	font-size: 2.5rem;
+	font-size: clamp(1.75rem, 2.5vw, 3rem);
 	font-weight: 400;
 	line-height: 1.25;
 	margin: 1rem 0;
 }
 
-@media (max-width: 1600px) {
-	.masonry_columns {
-		columns: 3 auto;
-		gap: 2rem;
-		padding: 2rem;
-	}
-}
-
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
 	.masonry_columns {
 		columns: 2 auto;
 		gap: 1rem;
@@ -448,6 +507,10 @@ p {
 		columns: auto;
 		gap: 0;
 	}
+
+	.item {
+		padding: 0 0 1rem;
+	}
 }
 
 /* Footer */
@@ -457,7 +520,17 @@ p {
 	padding: 4rem;
 }
 
-.footer .teritary_heading {
+.footer .primary_logo svg {
+	width: 5rem;
+	height: 5rem;
+}
+
+.footer .contact,
+.footer .social {
+	text-align: center;
+}
+
+.footer .tertiary_heading {
 	margin: 0 0 1rem;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -506,16 +579,12 @@ p {
 .footer_info {
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr;
-	margin: 4rem 0 0;
+	margin: 2rem 0 0;
 }
 
 .footer a:not(.main_social a) {
 	display: block;
 	padding: 1rem 0;
-}
-
-.footer .main_social {
-	transform: translateX(-1.5rem);
 }
 
 .footer .main_social a {
@@ -532,7 +601,15 @@ p {
 		padding: 1rem;
 	}
 
-	.footer .teritary_heading {
+	.footer .primary_logo svg {
+		margin: 1rem auto;
+	}
+
+	.footer .social {
+		display: block;
+	}
+
+	.footer .tertiary_heading {
 		margin: 0;
 	}
 
@@ -542,8 +619,7 @@ p {
 
 	.footer_info {
 		grid-template-columns: 1fr;
-		margin: 1rem 0 0;
-		gap: 1rem;
+		margin: 0;
 	}
 
 	.footer a:not(.main_social a) {
@@ -551,8 +627,6 @@ p {
 	}
 
 	.footer .main_social {
-		justify-content: flex-start;
 		flex-wrap: wrap;
-		transform: translateX(-0.5rem);
 	}
 }
