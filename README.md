@@ -4,7 +4,7 @@
 ![CSS](https://img.shields.io/badge/CSS3-%231572B6.svg?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=flat&logo=javascript&logoColor=black)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-[![Watch the Build](https://img.shields.io/badge/YouTube-Watch-blue?logo=youtube)](https://www.youtube.com/playlist?list=[playlist_goes_here])
+[![Watch the Build](https://img.shields.io/badge/YouTube-Watch-blue?logo=youtube)](https://www.youtube.com/watch?v=32XwCadbGrQ])
 
 This is a simple, clean landing page with a sticky, on-scroll header, built with HTML, CSS and vanilla JavaScript. It’s based on a Photoshop mockup called **[Solo - Modern Personal Blog PSD Template](https://themeforest.net/item/solo-modern-personal-blog-template/20160517)** — purchased from [Envato/ThemeForest](https://themeforest.net/). The goal of this project is to turn a static design into accessible, modern code — and make it easy for anyone to customize or learn from. It’s mobile responsive and includes a CSS columns masonry layout and an accessible, responsive navbar.
 
@@ -14,8 +14,7 @@ _This project is free and open-source, and focused on helping new frontend devel
 
 ## 🔴 YouTube
 
-🎥 **Watch the build in action** on [YouTube](https://www.youtube.com/@angelajholden) — or check out the
-[project playlist](https://www.youtube.com/playlist?list=[YOUR-PLAYLIST-ID]) to follow the full step-by-step process.
+🎥 **Watch the build in action** on [YouTube](https://www.youtube.com/watch?v=32XwCadbGrQn) to follow the full step-by-step process.
 
 ---
 
